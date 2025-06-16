@@ -115,10 +115,10 @@ run_general_search() {
   echo -e "\n 'Backup' en el nombre:"
   find "$DIR" $FIND_TYPE -iname "*backup*" 2>/dev/null | xargs ls -la
 
-  echo -e "\n📋 Logs:"
+  echo -e "\n Logs:"
   find "$DIR" $FIND_TYPE \( -iname "*.log" -o -iname "*log*" \) 2>/dev/null | xargs ls -la
 
-  echo -e "\n⚙️ Configuración:"
+  echo -e "\n Config:"
   find "$DIR" $FIND_TYPE \( -iname "*.conf" -o -iname "*.cfg" -o -iname "*config*" \) 2>/dev/null | xargs ls -la
 
   echo -e "\n🔐 SUID:"
@@ -127,14 +127,14 @@ run_general_search() {
   echo -e "\n🚨 SGID:"
   find "$DIR" -type f -perm -2000 2>/dev/null | xargs ls -la
 
-  echo -e "\n👤 Permisos rwx del usuario actual:"
+  echo -e "\n👤 rwx for $(whoami):"
   find "$DIR" -type f -user $(whoami) -perm -700 2>/dev/null | xargs ls -la
 }
 
 run_specific_search() {
   FIND_TYPE=$(build_find_type)
 
-  echo -e "\n🔎 Búsqueda específica en ($DIR)..."
+  echo -e "\n Specific Search On ($DIR)..."
 
   [[ "$TYPE" == "oculto" ]] && find "$DIR" $FIND_TYPE -name ".*" 2>/dev/null | xargs ls -la
   [[ -n "$NAME" ]] && find "$DIR" $FIND_TYPE -name "$NAME" 2>/dev/null | xargs ls -la
@@ -150,7 +150,7 @@ run_specific_search() {
 
   # 🔐 Búsqueda por permisos personalizados
   if [[ -n "$PERM_STRING" && -n "$FILTER_USER" ]]; then
-    echo -e "\n🔐 Archivos con permisos [$PERM_STRING] para usuario [$FILTER_USER]:"
+    echo -e "\n Perms [$PERM_STRING] for user [$FILTER_USER]:"
     case "$PERM_STRING" in
       r)    PERM_BIN=400 ;; w)    PERM_BIN=200 ;;
       x)    PERM_BIN=100 ;;
