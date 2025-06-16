@@ -14,7 +14,7 @@ usage() {
   echo "║        S C R A T C H E R             ║"
   echo "║    🧠  Hugo Ortega Martin            ║"
   echo "╚══════════════════════════════════════╝"
-  echo -e "\n Uso:"
+  echo -e "\n Usage:"
   echo
   echo
   echo "GENERAL SEARCH"
@@ -26,7 +26,7 @@ usage() {
   echo
   echo 
   echo "SPECIFIC SEARCH"
-  echo "$0 -d <path> -m <f|d|a> [opciones...]"
+  echo "$0 -d <path> -m <f|d|a> [options]"
   echo
   echo "f -> file search mode"
   echo "d -> directory search mode"
