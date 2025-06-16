@@ -1,23 +1,41 @@
 #!/bin/bash
 
 usage() {
-  echo -e "\n📌 Uso:"
+  echo -e "\n"
+  echo "╔══════════════════════════════════════╗"
+  echo "║    ▄████████  ▄█    █▄  ███▄▄▄▄      ║"
+  echo "║   ███    ███ ███    ███ ███▀▀▀██▄    ║"
+  echo "║   ███    █▀  ███    ███ ███   ███    ║"
+  echo "║   ███        ███    ███ ███   ███    ║"
+  echo "║ ▀███████████ ███    ███ ███   ███    ║"
+  echo "║          ███ ███    ███ ███   ███    ║"
+  echo "║    ▄█    ███ ███    ███ ███   ███    ║"
+  echo "║  ▄████████▀   ▀██████▀   ▀█   █▀     ║"
+  echo "║        S C R A T C H E R             ║"
+  echo "║    🧠  Hugo Ortega Martin            ║"
+  echo "╚══════════════════════════════════════╝"
+  echo -e "\n Uso:"
   echo "$0 -b -d <directorio> -m <f|d|a>                      # Búsqueda general"
   echo "$0 -d <directorio> -m <f|d|a> [opciones...]          # Búsqueda específica"
-  echo -e "\nOpciones búsqueda específica:"
+  echo
+  echo
+  echo -e "\n Opciones búsqueda específica:"
   echo "  -t oculto               Buscar archivos/directorios ocultos"
   echo "  -n <nombre>             Nombre exacto"
   echo "  -k <palabra>            Palabra en nombre"
   echo "  -e <extensión>          Extensión del archivo"
+  echo
+  echo
   echo "  --rwx-user              Permisos rwx para el usuario actual"
   echo "  --rwx-group             Permisos rwx para grupo actual"
   echo "  --user <usuario>        Filtrar por propietario"
   echo "  --group <grupo>         Filtrar por grupo"
-  echo "  --perm <rwx>            Permisos requeridos"
+  echo "  --perm <rwx>            Permisos requeridos sobre --user"
   echo "  --suid                  Archivos con bit SUID"
   echo "  --sgid                  Archivos con bit SGID"
   exit 1
 }
+
 
 BUSQUEDA_GENERAL=0
 DIR=""
