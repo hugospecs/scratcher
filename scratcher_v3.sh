@@ -113,40 +113,40 @@ run_general_search() {
   find "$DIR" $FIND_TYPE -name ".*" 2>/dev/null | xargs ls -la
 
   echo -e "\n 'Backup' en el nombre:"
-  find "$DIR" $FIND_TYPE -iname "*backup*" 2>/dev/null | run_ls
+  find "$DIR" $FIND_TYPE -iname "*backup*" 2>/dev/null | xargs ls -la
 
   echo -e "\n📋 Logs:"
-  find "$DIR" $FIND_TYPE \( -iname "*.log" -o -iname "*log*" \) 2>/dev/null | run_ls
+  find "$DIR" $FIND_TYPE \( -iname "*.log" -o -iname "*log*" \) 2>/dev/null | xargs ls -la
 
   echo -e "\n⚙️ Configuración:"
-  find "$DIR" $FIND_TYPE \( -iname "*.conf" -o -iname "*.cfg" -o -iname "*config*" \) 2>/dev/null | run_ls
+  find "$DIR" $FIND_TYPE \( -iname "*.conf" -o -iname "*.cfg" -o -iname "*config*" \) 2>/dev/null | xargs ls -la
 
   echo -e "\n🔐 SUID:"
-  find "$DIR" -type f -perm -4000 2>/dev/null | run_ls
+  find "$DIR" -type f -perm -4000 2>/dev/null | xargs ls -la
 
   echo -e "\n🚨 SGID:"
-  find "$DIR" -type f -perm -2000 2>/dev/null | run_ls
+  find "$DIR" -type f -perm -2000 2>/dev/null | xargs ls -la
 
   echo -e "\n👤 Permisos rwx del usuario actual:"
-  find "$DIR" -type f -user $(whoami) -perm -700 2>/dev/null | run_ls
+  find "$DIR" -type f -user $(whoami) -perm -700 2>/dev/null | xargs ls -la
 }
 
 run_specific_search() {
   FIND_TYPE=$(build_find_type)
 
-  echo -e "\n🔎 Búsqueda específica en $DIR..."
+  echo -e "\n🔎 Búsqueda específica en ($DIR)..."
 
-  [[ "$TYPE" == "oculto" ]] && find "$DIR" $FIND_TYPE -name ".*" 2>/dev/null | run_ls
-  [[ -n "$NAME" ]] && find "$DIR" $FIND_TYPE -name "$NAME" 2>/dev/null | run_ls
-  [[ -n "$KEYWORD" ]] && find "$DIR" $FIND_TYPE -iname "*$KEYWORD*" 2>/dev/null | run_ls
-  [[ -n "$EXTENSION" ]] && find "$DIR" $FIND_TYPE -iname "*.$EXTENSION" 2>/dev/null | run_ls
+  [[ "$TYPE" == "oculto" ]] && find "$DIR" $FIND_TYPE -name ".*" 2>/dev/null | xargs ls -la
+  [[ -n "$NAME" ]] && find "$DIR" $FIND_TYPE -name "$NAME" 2>/dev/null | xargs ls -la
+  [[ -n "$KEYWORD" ]] && find "$DIR" $FIND_TYPE -iname "*$KEYWORD*" 2>/dev/null | xargs ls -la
+  [[ -n "$EXTENSION" ]] && find "$DIR" $FIND_TYPE -iname "*.$EXTENSION" 2>/dev/null | xargs ls -la
 
-  [[ $RWX_USER -eq 1 ]] && find "$DIR" -type f -user $(whoami) -perm -700 2>/dev/null | run_ls
-  [[ $RWX_GROUP -eq 1 ]] && find "$DIR" -type f -group $(id -gn) -perm -070 2>/dev/null | run_ls
-  [[ -n "$FILTER_USER" ]] && find "$DIR" $FIND_TYPE -user "$FILTER_USER" 2>/dev/null | run_ls
-  [[ -n "$FILTER_GROUP" ]] && find "$DIR" $FIND_TYPE -group "$FILTER_GROUP" 2>/dev/null | run_ls
-  [[ $SUID -eq 1 ]] && find "$DIR" -type f -perm -4000 2>/dev/null | run_ls
-  [[ $SGID -eq 1 ]] && find "$DIR" -type f -perm -2000 2>/dev/null | run_ls
+  [[ $RWX_USER -eq 1 ]] && find "$DIR" -type f -user $(whoami) -perm -700 2>/dev/null | xargs ls -la
+  [[ $RWX_GROUP -eq 1 ]] && find "$DIR" -type f -group $(id -gn) -perm -070 2>/dev/null | xargs ls -la
+  [[ -n "$FILTER_USER" ]] && find "$DIR" $FIND_TYPE -user "$FILTER_USER" 2>/dev/null | xargs ls -la
+  [[ -n "$FILTER_GROUP" ]] && find "$DIR" $FIND_TYPE -group "$FILTER_GROUP" 2>/dev/null | xargs ls -la
+  [[ $SUID -eq 1 ]] && find "$DIR" -type f -perm -4000 2>/dev/null | xargs ls -la
+  [[ $SGID -eq 1 ]] && find "$DIR" -type f -perm -2000 2>/dev/null | xargs ls -la
 
   # 🔐 Búsqueda por permisos personalizados
   if [[ -n "$PERM_STRING" && -n "$FILTER_USER" ]]; then
@@ -158,7 +158,7 @@ run_specific_search() {
       wx)   PERM_BIN=300 ;; rwx)  PERM_BIN=700 ;;
       *) echo "❌ Permiso inválido: $PERM_STRING"; exit 1 ;;
     esac
-    find "$DIR" $FIND_TYPE -user "$FILTER_USER" -perm -$PERM_BIN 2>/dev/null | run_ls
+    find "$DIR" $FIND_TYPE -user "$FILTER_USER" -perm -$PERM_BIN 2>/dev/null | xargs ls -la
   fi
 }
 
