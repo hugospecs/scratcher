@@ -109,10 +109,10 @@ run_ls() {
 run_general_search() {
   FIND_TYPE=$(build_find_type)
 
-  echo -e "\n🔍 Ocultos:"
-  find "$DIR" $FIND_TYPE -name ".*" 2>/dev/null | run_ls
+  echo -e "\n Hidden:"
+  find "$DIR" $FIND_TYPE -name ".*" 2>/dev/null | xargs ls -la
 
-  echo -e "\n📦 Archivos con 'backup' en el nombre:"
+  echo -e "\n 'Backup' en el nombre:"
   find "$DIR" $FIND_TYPE -iname "*backup*" 2>/dev/null | run_ls
 
   echo -e "\n📋 Logs:"
