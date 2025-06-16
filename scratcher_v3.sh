@@ -15,24 +15,38 @@ usage() {
   echo "║    🧠  Hugo Ortega Martin            ║"
   echo "╚══════════════════════════════════════╝"
   echo -e "\n Uso:"
-  echo "$0 -b -d <directorio> -m <f|d|a>                      # Búsqueda general"
-  echo "$0 -d <directorio> -m <f|d|a> [opciones...]          # Búsqueda específica"
   echo
   echo
-  echo -e "\n Opciones búsqueda específica:"
-  echo "  -t oculto               Buscar archivos/directorios ocultos"
-  echo "  -n <nombre>             Nombre exacto"
-  echo "  -k <palabra>            Palabra en nombre"
-  echo "  -e <extensión>          Extensión del archivo"
+  echo "GENERAL SEARCH"
+  echo "$0 -b -d <directory> -m <f|d|a>"
+  echo
+  echo "f -> file search mode"
+  echo "d -> directory search mode"
+  echo " a -> all search mode"
+  echo
+  echo 
+  echo "SPECIFIC SEARCH"
+  echo "$0 -d <directory> -m <f|d|a> [opciones...]"
+  echo
+  echo "f -> file search mode"
+  echo "d -> directory search mode"
+  echo " a -> all search mode"
   echo
   echo
-  echo "  --rwx-user              Permisos rwx para el usuario actual"
-  echo "  --rwx-group             Permisos rwx para grupo actual"
-  echo "  --user <usuario>        Filtrar por propietario"
-  echo "  --group <grupo>         Filtrar por grupo"
-  echo "  --perm <rwx>            Permisos requeridos sobre --user"
-  echo "  --suid                  Archivos con bit SUID"
-  echo "  --sgid                  Archivos con bit SGID"
+  echo -e "\n File Options..."
+  echo "  -t                      hidden files/directories"
+  echo "  -n <nombre>             name"
+  echo "  -k <palabra>            contains word"
+  echo "  -e <extensión>          file extension"
+  echo
+  echo -e "\n Perm Options..."
+  echo "  --rwx-user              rwx perms for actual user"
+  echo "  --rwx-group             rwx perms for actual users group"
+  echo "  --user <usuario>        user"
+  echo "  --group <grupo>         group"
+  echo "  --perm <rwx>            specific perms for specific --user"
+  echo "  --suid                  SUID file"
+  echo "  --sgid                  SGID files"
   exit 1
 }
 
