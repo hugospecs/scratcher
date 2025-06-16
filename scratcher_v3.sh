@@ -18,32 +18,32 @@ usage() {
   echo
   echo
   echo "GENERAL SEARCH"
-  echo "$0 -b -d <directory> -m <f|d|a>"
+  echo "$0 -b -d <path> -m <f|d|a>"
   echo
   echo "f -> file search mode"
   echo "d -> directory search mode"
-  echo " a -> all search mode"
+  echo "a -> all search mode"
   echo
   echo 
   echo "SPECIFIC SEARCH"
-  echo "$0 -d <directory> -m <f|d|a> [opciones...]"
+  echo "$0 -d <path> -m <f|d|a> [opciones...]"
   echo
   echo "f -> file search mode"
   echo "d -> directory search mode"
-  echo " a -> all search mode"
+  echo "a -> all search mode"
   echo
   echo
   echo -e "\n File Options..."
   echo "  -t                      hidden files/directories"
-  echo "  -n <nombre>             name"
-  echo "  -k <palabra>            contains word"
-  echo "  -e <extensión>          file extension"
+  echo "  -n <name>               name"
+  echo "  -k <word>               contains word"
+  echo "  -e <extension>          file extension"
   echo
   echo -e "\n Perm Options..."
   echo "  --rwx-user              rwx perms for actual user"
   echo "  --rwx-group             rwx perms for actual users group"
-  echo "  --user <usuario>        user"
-  echo "  --group <grupo>         group"
+  echo "  --user <user>           user"
+  echo "  --group <group>         group"
   echo "  --perm <rwx>            specific perms for specific --user"
   echo "  --suid                  SUID file"
   echo "  --sgid                  SGID files"
@@ -150,7 +150,6 @@ run_specific_search() {
 
   # 🔐 Búsqueda por permisos personalizados
   if [[ -n "$PERM_STRING" && -n "$FILTER_USER" ]]; then
-    echo -e "\n Perms [$PERM_STRING] for user [$FILTER_USER]:"
     case "$PERM_STRING" in
       r)    PERM_BIN=400 ;; w)    PERM_BIN=200 ;;
       x)    PERM_BIN=100 ;;
