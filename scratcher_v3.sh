@@ -17,20 +17,20 @@ usage() {
   echo -e "\n Usage:"
   echo
   echo
-  echo "GENERAL SEARCH"
-  echo "$0 -b -d <path> -m <f|d|a>"
+  echo -e "\nGENERAL SEARCH"
+  echo -e "\n$0 -b -d <path> -m <f|d|a>"
   echo
-  echo "f -> file search mode"
-  echo "d -> directory search mode"
-  echo "a -> all search mode"
+  echo -e "\nf -> file search mode"
+  echo -e "\nd -> directory search mode"
+  echo -e "\na -> all search mode"
   echo
   echo 
-  echo "SPECIFIC SEARCH"
-  echo "$0 -d <path> -m <f|d|a> [options]"
+  echo -e "\nSPECIFIC SEARCH"
+  echo -e "\n$0 -d <path> -m <f|d|a> [options]"
   echo
-  echo "f -> file search mode"
-  echo "d -> directory search mode"
-  echo "a -> all search mode"
+  echo -e "\nf -> file search mode"
+  echo -e "\nd -> directory search mode"
+  echo -e "\na -> all search mode"
   echo
   echo
   echo -e "\n File Options..."
